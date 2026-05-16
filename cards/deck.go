@@ -20,8 +20,19 @@ func newDeck() deck {
 
 }
 
-func (d deck) print() { // (d deck) is a receiver function for the type deck
+func (d deck) print() { // (d deck) is a receiver function for the type deck, to yeh cards.print() se hi chalega, as this is attached to type deck
+	// receiver function pehle lega, then () output karega
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
+}
+
+func deal(d deck, handSize int) (deck, deck) { // deal() () is a normal function, to yeh deal(cards,x) se hi chalega, this is not attached to any type, belongs to package
+
+	// normal function pehle hi apna naam le lega
+	return d[:handSize], d[handSize:]
+}
+
+func (d deck) deal(handSize int) (deck, deck) {
+	return d[:handSize], d[:handSize]
 }
