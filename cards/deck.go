@@ -51,3 +51,18 @@ func (d deck) saveToFile(filename string) error {
 	// 0666 0 for octal rep, 6 for read and write permissions, 666 means owner, grp and others can r&w this file and not execute it
 
 }
+
+func newDeckFromFile(filename string) deck {
+	bs, err := os.ReadFile(filename)
+
+	if err != nil {
+		// option 1 -> log error and return call to newDeck()
+		// option 2 -> log error and entirely quit program
+
+		fmt.Println("Error:", err)
+		os.Exit(1) // os.exit() and panic() are valid return statements for go compiler
+	}
+
+	s := strings.Split(string(bs), ",")
+	return deck(s)
+}

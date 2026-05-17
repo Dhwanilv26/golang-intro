@@ -23,6 +23,11 @@ func main() {
 
 	fmt.Println(cards.toString())
 
+	cards.saveToFile("temp_save")
+
+	fmt.Println("printing deck from file:")
+	fmt.Println(newDeckFromFile("temp_save"))
+
 }
 
 func newCard() string {
