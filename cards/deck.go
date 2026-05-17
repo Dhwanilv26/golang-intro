@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strings"
+)
 
 // create a new type of 'deck' which is a slice of strings
 
@@ -35,4 +39,15 @@ func deal(d deck, handSize int) (deck, deck) { // deal() () is a normal function
 
 func (d deck) deal(handSize int) (deck, deck) {
 	return d[:handSize], d[:handSize]
+}
+
+func (d deck) toString() string { // converts ["red","yellow","blue"] into "red,yellow,blue"
+	return strings.Join([]string(d), ",")
+}
+
+func (d deck) saveToFile(filename string) error {
+	// everything is stored as a slice of bytes in the hard disk, as "ABC" ] =[65,66,67]
+	return os.WriteFile(filename, []byte(d.toString()), 0666)
+	// 0666 0 for octal rep, 6 for read and write permissions, 666 means owner, grp and others can r&w this file and not execute it
+
 }

@@ -18,6 +18,11 @@ func main() {
 	fmt.Println("remaining cards")
 	end.print()
 
+	// temp := "Hello world!"
+	// fmt.Println([]byte(temp))
+
+	fmt.Println(cards.toString())
+
 }
 
 func newCard() string {
