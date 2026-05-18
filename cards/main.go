@@ -1,32 +1,37 @@
 package main
 
-import "fmt"
+// import "fmt"
 
 func main() {
 	cards := newDeck()
 	// cards.print()
 
-	st, end := deal(cards, 4)
-	st.print()
-	fmt.Println("remaining cards")
-	end.print()
+// 	st, end := deal(cards, 4)
+// 	st.print()
+// 	fmt.Println("remaining cards")
+// 	end.print()
 
-	fmt.Println("NOW THE SAME WITH receiver FUNCTION")
+// 	fmt.Println("NOW THE SAME WITH receiver FUNCTION")
 
-	st, end = cards.deal(4)
-	st.print()
-	fmt.Println("remaining cards")
-	end.print()
+// 	st, end = cards.deal(4)
+// 	st.print()
+// 	fmt.Println("remaining cards")
+// 	end.print()
 
 	// temp := "Hello world!"
 	// fmt.Println([]byte(temp))
 
-	fmt.Println(cards.toString())
+// 	fmt.Println(cards.toString())
 
-	cards.saveToFile("temp_save")
+// 	cards.saveToFile("temp_save")
 
-	fmt.Println("printing deck from file:")
-	fmt.Println(newDeckFromFile("temp_save"))
+// 	fmt.Println("printing deck from file:")
+// 	fmt.Println(newDeckFromFile("temp_save"))
+
+    cards.shuffle()
+    cards.print()
+	
+	
 
 }
 
