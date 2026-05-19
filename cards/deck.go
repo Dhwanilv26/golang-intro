@@ -73,6 +73,7 @@ func (d deck) shuffle(){
     
     source:=rand.NewSource(time.Now().UnixNano())
     r:=rand.New(source)
+	// now a des
     
     for i:=range d {
         newPosition:=r.Intn(len(d)-1) // pseudo random generator, not deterministic, need a seed value like in python
