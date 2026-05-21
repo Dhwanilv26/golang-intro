@@ -30,10 +30,19 @@ func main() {
 	}
 	jim.updateName("jimmy")
 	jim.print()
+
+	x := 10
+	updateInt(&x)
+	fmt.Println(x)
+
 }
 
-func (p person) updateName(newFirstName string) {
-	p.firstName = newFirstName
+func updateInt(x *int) {
+	*x = 50
+}
+
+func (p *person) updateName(newFirstName string) {
+	(*p).firstName = newFirstName
 }
 
 func (p person) print() {
