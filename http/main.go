@@ -2,9 +2,13 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 )
+
+type logWriter struct {
+}
 
 func main() {
 
@@ -27,8 +31,23 @@ func main() {
 
 	defer resp.Body.Close() // defer keyword stores everything in a stack, this will be executed at the last after the program finishes, to close the tcp connection
 
-	bs := make([]byte, 9999)
-	resp.Body.Read(bs)
-	fmt.Println(string(bs))
+	// bs := make([]byte, 9999)
+	// resp.Body.Read(bs)
+	// fmt.Println(string(bs))
 
+	lw := logWriter{}
+
+	io.Copy(lw, resp.Body)
+
+	// io.Copy(os.Stdout, resp.Body) // first val -> implement the writer and 2nd value -> reader interface (dst writer, src reader) , copies from src to dest
+	// os.stdout is a type of *file, file has the write method which satisfies the writer interface,
+	// in go, everything is treated as a file, even terminals, so this works perfectly
+
+}
+
+func (logWriter) Write(bs []byte) (int, error) {
+	// beauty of go interfaces, because write ko to hamne call bhi nai kiya, then also we can use it as per our needs!! GO >>>
+	fmt.Println(string(bs))
+	fmt.Println("bytes written", len(bs))
+	return len(bs), nil
 }
